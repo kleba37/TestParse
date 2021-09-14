@@ -1,0 +1,22 @@
+{
+    "name": "user/test",
+    "autoload": {
+        "psr-4": {
+            "TestParser\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "scagroup",
+            "email": "scagroup@yandex.ru"
+        }
+    ],
+    "require": {
+        "symfony/css-selector": "^5.3",
+        "symfony/dom-crawler": "^5.3",
+        "symfony/http-client": "^5.3"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^5.3"
+    }
+}
