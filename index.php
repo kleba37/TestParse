@@ -1,25 +1,18 @@
 <?php
 
+use Symfony\Component\VarDumper\VarDumper;
+
 include_once(__DIR__."/vendor/autoload.php");
 
-use Symfony\Component\DomCrawler\Crawler;
-use Symfony\Component\HttpClient\HttpClient;
-use Symfony\Component\VarDumper\VarDumper;
-use Symfony\Component\CssSelector\CssSelectorConverter;
+use TestParser\Classes\ManagerParse;
+use TestParser\Classes\Parse;
+use TestParser\Classes\Database;
 
-$url = "https://www.rbc.ru/";
-$client = HttpClient::create();
-$request = $client->request('GET', $url);
+$database = new Database();
+$parse = new Parse();
 
-if ( $request->getStatusCode() != 200 ) die("Error\nStatus code: " . $request->getStatusCode());
+$manager = new ManagerParse($database, $parse);
 
-$selector = new CssSelectorConverter();
+$manager->add($parse);
 
-$crawler = new Crawler($request->getContent());
-
-$data = $crawler->filter('.js-news-feed-list > a');
-
-foreach($data->children()->getIterator() as $news){
-    var_dump($news);
-}
-
+$manager->parse();

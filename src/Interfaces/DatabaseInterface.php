@@ -3,9 +3,9 @@
 
 namespace TestParser\Interfaces;
 
-use TestParser\Interfaces\DataObjectInterfaces;
+use TestParser\Interfaces\DataInterfaces;
 
 interface DatabaseInterface
 {
-    public function write(DataObjectInterfaces $data);
+    public function write(DataInterfaces $data) : bool;
 }
