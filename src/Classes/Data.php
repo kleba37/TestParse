@@ -7,12 +7,23 @@ use TestParser\Interfaces\DataInterfaces;
 
 class Data implements DataInterfaces
 {
-    private $link;
-    private $text;
+    private string $head;
+    private string $text;
+    private string $image;
 
-    public function setLink(string $link)
+    public function getImage() : string
     {
-        $this->link = $link;
+        return $this->image;
+    }
+
+    public function setImage(string $image)
+    {
+        $this->image = $image;
+    }
+
+    public function setHead(string $head)
+    {
+        $this->head = $head;
     }
 
     public function setText(string $text)
@@ -30,8 +41,8 @@ class Data implements DataInterfaces
         return $this->text;
     }
 
-    public function getLink(): string
+    public function getHead(): string
     {
-        return $this->link;
+        return $this->head;
     }
 }
