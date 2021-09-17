@@ -7,8 +7,17 @@ use TestParser\Interfaces\DataInterfaces;
 
 class Data implements DataInterfaces
 {
+    /*
+     * Database name = head, type = varchar, length = 200
+     */
     private string $head;
+    /*
+     * Database name = text, type = text
+     */
     private string $text;
+    /*
+     * Database name = image, type = varchar length = 150
+     */
     private string $image;
 
     public function getImage() : string
