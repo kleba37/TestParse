@@ -9,12 +9,12 @@ use PDO;
 class MySqlDatabase
 {
     protected static $instance;
-    private static string $user;
-    private static string $password;
-    private static string $host;
-    private static string $database;
-    private string $pathConfig = "config.yaml";
-    private PDO $connect;
+    private string $user = "";
+    private string $password = "";
+    private string $host ="";
+    private string $database = "";
+    private $pathConfig = "config.yaml";
+    private static PDO $connect;
 
     public function getConnect() :  ?PDO
     {
@@ -37,7 +37,7 @@ class MySqlDatabase
     private function __construct()
     {
         $this->getConfig();
-        $this->base = new PDO("mysql:". "host=" . $this->host . ";dbname=" . $this->database . ";port=3306;", $this->user, $this->password);
+        $this->connect = new PDO("mysql:". "host=" . $this->host . ";dbname=" . $this->database . ";charset=UTF8;port=3306;", $this->user, $this->password);
     }
 
     public static function getInstance()

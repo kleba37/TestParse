@@ -77,8 +77,8 @@ class Parse implements ParseInterfaces
         return true;
     }
 
-    public function getData(): string
+    public function getData(): array
     {
-        return "";
+        return $this->data;
     }
 }

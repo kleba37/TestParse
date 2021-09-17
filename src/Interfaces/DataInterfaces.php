@@ -3,7 +3,6 @@
 
 namespace TestParser\Interfaces;
 
-
 interface DataInterfaces
 {
 

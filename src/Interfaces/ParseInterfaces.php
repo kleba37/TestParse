@@ -8,5 +8,5 @@ interface ParseInterfaces
 {
     public function parse() : Bool;
 
-    public function getData() : string;
+    public function getData() : array;
 }
