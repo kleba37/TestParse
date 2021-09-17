@@ -10,6 +10,7 @@ class ManagerParse
 {
     private $m_parse;
     private $database;
+    private $limit = 15;
 
     public function setDatabase(DatabaseInterface $database)
     {
@@ -28,7 +29,13 @@ class ManagerParse
     }
 
     public function write(){
-        $this->database->write();
+        foreach ($this->m_parse as $items){
+            $i = 0;
+            foreach ($items->getData() as $item) {
+                if ($i >= $this->limit) break;
+                if ($this->database->write($item)) $i++;
+            }
+        }
     }
 
     public function __construct(DatabaseInterface $database)
