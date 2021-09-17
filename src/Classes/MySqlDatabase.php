@@ -2,15 +2,42 @@
 
 
 namespace TestParser\Classes;
-
+use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\VarDumper\VarDumper;
+use PDO;
 
 class MySqlDatabase
 {
     protected static $instance;
+    private static string $user;
+    private static string $password;
+    private static string $host;
+    private static string $database;
+    private string $pathConfig = "config.yaml";
+    private PDO $connect;
+
+    public function getConnect() :  ?PDO
+    {
+        return $this->connect;
+    }
+
+    public function getConfig() : bool
+    {
+        $file = Yaml::parseFile($_SERVER['DOCUMENT_ROOT'] . "/".$this->pathConfig);
+        $config = $file['Mysql'] ? $file['Mysql'] : $file['mysql'] ;
+
+        if (!$config & !$config['host'] & !$config['user'] & !$config['password'] & !$config['database'] ) return false;
+        $this->host = $config['host'];
+        $this->user = $config['user'];
+        $this->password = $config['password'];
+        $this->database = $config['database'];
+        return true;
+    }
 
     private function __construct()
     {
-
+        $this->getConfig();
+        $this->base = new PDO("mysql:". "host=" . $this->host . ";dbname=" . $this->database . ";port=3306;", $this->user, $this->password);
     }
 
     public static function getInstance()
